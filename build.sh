@@ -37,8 +37,7 @@ check-command() {
 }
 
 commands=(
-  node npm asar electron-packager electron-installer-debian
-  7z convert fakeroot dpkg
+  node npm 7z convert fakeroot dpkg
 )
 
 for command in "${commands[@]}"; do
@@ -61,7 +60,7 @@ if [ "$1" == win ]; then
 
   # Extract the app container
   if ! [ -d build/app ]; then
-    asar extract build/bundle/resources/app.asar build/app
+    npx asar extract build/bundle/resources/app.asar build/app
   fi
 elif [ "$1" == mac ]; then
   # Extract the Notion disk image
@@ -70,7 +69,7 @@ elif [ "$1" == mac ]; then
   fi
 
   if ! [ -d build/app ]; then
-    asar extract \
+    npx asar extract \
       'build/notion/Notion Installer/Notion.app/Contents/Resources/app.asar' \
       build/app
   fi
@@ -109,7 +108,7 @@ fi
 
 # Create Electron distribution
 if ! [ -d build/dist ]; then
-  electron-packager build/app app \
+  npx electron-packager build/app app \
     --platform linux \
     --arch x64 \
     --out build/dist \
@@ -118,7 +117,7 @@ if ! [ -d build/dist ]; then
 fi
 
 # Create Debian package
-electron-installer-debian \
+npx electron-installer-debian \
   --src build/dist/app-linux-x64 \
   --dest out \
   --arch amd64 \
