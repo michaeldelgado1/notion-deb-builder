@@ -1,3 +1,6 @@
+# Update!
+The original repo absolutly crushes this one. It has a package manager source, and an updated and streamlined build process. Don't use this unless needed... Really
+
 # Notion DEB Builder
 
 Build Notion packages for Ubuntu/Debian, using resources extracted from Notion's Windows or macOS packages.
